@@ -25,6 +25,8 @@ def main() -> int:
     text = JOKE.strip()
     if not 1 <= len(text) <= 200:
         raise ValueError(f"joke must be 1-200 characters, got {len(text)}")
+    if "\n" in text or "\r" in text:
+        raise ValueError("joke must be a single line")
     (out_dir / "entry.txt").write_text(text, encoding="utf-8")
     print(text)
     return 0
